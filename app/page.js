@@ -1,14 +1,15 @@
+"use client";
 
-import Link from "next/link";
-import Banner from "./components/Banner";
-import SpecialMenu from "./components/SpecialMenu";
-import MenuSection from "./components/MenuSection";
+import HomeBanner from "@/app/components/HomeBanner";
+import About from "@/app/components/About";
+import Service from "@/app/components/Service";
 
 export default function Home() {
-  return (<>
-    <Banner/>
-    <SpecialMenu/>
-    <MenuSection/>
-  </>
+  return (
+    <>
+      <HomeBanner/>
+      <About/>
+      <Service/>
+    </>
   );
 }

@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 
 const menuItems = [
   {
-    image: '/assets/images/box-item/menu-item-1.jpg',
+    image: '/images/box-item/menu-item-1.jpg',
     title: 'Marbled Iced Latte',
     text: 'Condensed Milk, Ice cubs, Espresso',
     description:
@@ -16,7 +16,7 @@ const menuItems = [
     delay: undefined,
   },
   {
-    image: '/assets/images/box-item/menu-item-2.jpg',
+    image: '/images/box-item/menu-item-2.jpg',
     title: 'Marbled Iced Latte',
     text: 'Condensed Milk, Ice cubs, Espresso',
     description:
@@ -24,7 +24,7 @@ const menuItems = [
     delay: '0.1s',
   },
   {
-    image: '/assets/images/box-item/menu-item-3.jpg',
+    image: '/images/box-item/menu-item-3.jpg',
     title: 'Marbled Iced Latte',
     text: 'Condensed Milk, Ice cubs, Espresso',
     description:
@@ -32,7 +32,7 @@ const menuItems = [
     delay: '0.2s',
   },
   {
-    image: '/assets/images/box-item/menu-item-1.jpg',
+    image: '/images/box-item/menu-item-1.jpg',
     title: 'Marbled Iced Latte',
     text: 'Condensed Milk, Ice cubs, Espresso',
     description:
@@ -47,8 +47,8 @@ export default function MenuSection() {
 
   return (
     <div className="wg-menu">
-      <img className="item-1" src="assets/images/item-background/item-4.png" alt="" />
-      <img className="item-2" src="assets/images/item-background/item-6.png" alt="" />
+      <img className="item-1" src="images/item-background/item-4.png" alt="" />
+      <img className="item-2" src="images/item-background/item-6.png" alt="" />
       <div className="themesflat-container">
         <div className="row">
           <div className="col-12">
