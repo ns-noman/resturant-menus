@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
 import "@/app/css/globals.css";
 import "@/app/css/icon/style.css";
 import "@/app/css/shortcodes.css";
@@ -11,9 +12,8 @@ import "@/app/css/animate.min.css";
 import "@/app/css/swiper-bundle.min.css";
 import "@/app/css/font/font.css";
 import "@/app/css/bootstrap.css";
-import Header from "@/app/components/HeaderMain";
+import HeaderCart from "@/app/components/HeaderCart";
 import Footer from "@/app/components/Footer";
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,11 +39,21 @@ export default function RootLayout({ children }) {
       <body className="body">
            <div id="wrapper">
             <div id="page">
-              <Header/>
+              <HeaderCart/>
               {children}
               <Footer/>
             </div>
           </div>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: "#198754",
+                color: "#fff",
+                border: "1px solid #198754",
+              },
+            }}
+          />
       </body>
     </html>
   );

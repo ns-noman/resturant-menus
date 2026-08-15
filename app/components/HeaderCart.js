@@ -1,7 +1,8 @@
 "use client";
-
 import Link from 'next/link';
 import { useState } from "react";
+import Cart from '@/app/components/Cart';
+import Search from '@/app/components/Search';
 
 const menus = [
   { label: "WOODEN SPOON MENU", slug: "woodenspoon#menus-list", hasChildren: false, current: false },
@@ -105,8 +106,10 @@ export default function Header() {
             </ul>
           </nav>
           {/* /main-nav */}
-          {/* <div className="header-right">
-          </div> */}
+          <div className="header-right">
+              {/* <Search/> */}
+              <Cart/>
+          </div>
         </div>
       </div>
       <div className={`mobile-nav-wrap${mobileNavActive ? " active" : ""}`}>
