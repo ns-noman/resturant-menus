@@ -13,6 +13,8 @@ import "@/app/css/font/font.css";
 import "@/app/css/bootstrap.css";
 import Header from "@/app/components/HeaderMain";
 import Footer from "@/app/components/Footer";
+import CustomCursor from "@/app/components/CustomCursor";
+import ProgressBar from "@/app/components/ProgressBar";
 
 
 const geistSans = Geist({
@@ -44,6 +46,8 @@ export default function RootLayout({ children }) {
               <Footer/>
             </div>
           </div>
+          <CustomCursor />
+          <ProgressBar />
       </body>
     </html>
   );

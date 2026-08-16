@@ -113,14 +113,14 @@ export default function Header() {
           onClick={() => setMobileNavActive(false)}
         ></div>
         <div className="inner-mobile-nav">
-          <a href="/index-2.html" rel="home" className="main-logo">
+          <Link href="/" rel="home" className="main-logo">
             <img
               id="mobile-logo_header"
               alt=""
               src="/images/logo/logo-dark.png"
               data-retina="/images/logo/logo-dark@2x.png"
             />
-          </a>
+          </Link>
           <div
             className="mobile-nav-close"
             onClick={() => setMobileNavActive(false)}
