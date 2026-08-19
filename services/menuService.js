@@ -1,7 +1,7 @@
 import { fetchAPI } from "@/lib/api";
 
 export async function getMenuList(param) {
-  return fetchAPI(`menus-list?${param}`);
+  return fetchAPI(`/order/view?${param}`);
 }
 // export async function getFeatureBikes() {
 //   return fetchAPI(`feature-bikes`);

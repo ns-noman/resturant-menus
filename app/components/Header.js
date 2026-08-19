@@ -4,45 +4,27 @@ import { useState } from "react";
 import Cart from '@/app/components/Cart';
 import Search from '@/app/components/Search';
 import { useEffect, useRef } from "react";
+import { usePathname } from 'next/navigation';
 
 const menus = [
   { label: "WOODEN SPOON MENU", slug: "woodenspoon#menus-list", hasChildren: false, current: false },
-  { label: "DESHI BITES MENU", slug: "db#menus-list", hasChildren: false, current: true },
+  { label: "DESHI BITES MENU", slug: "db#menus-list", hasChildren: false, current: false },
   { label: "SCOOP MENU", slug: "scoop#menus-list", hasChildren: false, current: false },
   { label: "HYDRO MENU", slug: "hydro#menus-list", hasChildren: false, current: false },
 ];
 
 
 export default function Header() {
-
-
-  const canvasRef = useRef(null);
+  const pathname = usePathname();
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        canvasRef.current &&
-        !canvasRef.current.contains(event.target)
-      ) {
-        setWelcomActive(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
-    };
-  }, []);
-
-
+    const menuActive = pathname.split("/")[1] === "menus";
+    setHeaderRight(menuActive);
+    // setHeaderLeft(menuActive);
+  }, [pathname]);
   const [mobileNavActive, setMobileNavActive] = useState(false);
-  const [welcomActive, setWelcomActive] = useState(false);
-
-  const toggleMobileSubmenu = (label) => {
-    setOpenMobileSubmenu((current) => (current === label ? null : label));
-  };
-
+  const [headerRight, setHeaderRight] = useState(false);
+  const [headerLeft, setHeaderLeft] = useState(true);
+  
   return (
     <header id="header_main" className="header header-fixed style-absolute">
       <div className="themesflat-container">
@@ -81,122 +63,16 @@ export default function Header() {
           >
             <span></span>
           </div>
-          {/* /mobile-button */}
-          <div className="header-left">
-            <div className="canvas" ref={canvasRef}>
-              <div className="canvas-button" onClick={() => setWelcomActive(!welcomActive)}>
-                <span></span>
-              </div>
-              <div className={`wg-welcom ${welcomActive ? " active" : ""}`}>
-                <div className="inner">
-                  <div className="button-close" onClick={() => setWelcomActive(false)}>
-                    <i className="icon-close"></i>
-                  </div>
 
-                  <div className="title">
-                    Welcome To <br />
-                    Centrum
-                  </div>
+          {headerLeft && <HeaderLeft/>}
 
-                  <div className="text">
-                   Where great food, warm hospitality, and unforgettable moments come together under one roof.
-                  </div>
-
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlnsXlink="http://www.w3.org/1999/xlink"
-                    width="15"
-                    height="14"
-                    viewBox="0 0 15 14"
-                  >
-                    <image
-                      data-name=" copy"
-                      width="15"
-                      height="14"
-                      xlinkHref="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAA6klEQVQokYWTvRGDMAyFHxwLkBGgoKJiBRghjGBGSEZIRkhGSEZIRgiVKxf2CqyQEyfdGZ8NanxI/qynHzIcWNvUFYASwKKNdf7tKNw2NV1WAC4Mir21saN8FBGwB/AAUEXe3fg2mRn87BQysBqnjZ0yD+wA/HbAK583Pk++7NcBSM3y71Q5Z1WJGh1LXSKPO8msIuCdussy+yA2a2OXgsfSeQHKMrIv1YMneFRlECDwnFAjWVc4562RzaHGkMQUKKpWk5onhuadORM4+CsaLgmBYXPIvpQg3O1wPakW+RHW+sinjaWubw3AH1VWQ+OlMsz1AAAAAElFTkSuQmCC"
-                    />
-                  </svg>
-
-                  <div className="number-phone">
-                    <a href="tel:+8801847091102">
-                      +880 1847 091102
-                    </a>
-                  </div>
-
-                  <div className="place">
-                    Plot 1063, Block I, Bashundhara R/A,, Dhaka, Bangladesh
-                  </div>
-
-                  <div className="mail">
-                    <a href="mailto:info@centrumbd.com">
-                      info@centrumbd.com
-                    </a>
-                  </div>
-
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlnsXlink="http://www.w3.org/1999/xlink"
-                    width="15"
-                    height="14"
-                    viewBox="0 0 15 14"
-                  >
-                    <image
-                      data-name=" copy"
-                      width="15"
-                      height="14"
-                      xlinkHref="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAA6klEQVQokYWTvRGDMAyFHxwLkBGgoKJiBRghjGBGSEZIRkhGSEZIRgiVKxf2CqyQEyfdGZ8NanxI/qynHzIcWNvUFYASwKKNdf7tKNw2NV1WAC4Mir21saN8FBGwB/AAUEXe3fg2mRn87BQysBqnjZ0yD+wA/HbAK583Pk++7NcBSM3y71Q5Z1WJGh1LXSKPO8msIuCdussy+yA2a2OXgsfSeQHKMrIv1YMneFRlECDwnFAjWVc4562RzaHGkMQUKKpWk5onhuadORM4+CsaLgmBYXPIvpQg3O1wPakW+RHW+sinjaWubw3AH1VWQ+OlMsz1AAAAAElFTkSuQmCC"
-                    />
-                  </svg>
-
-                  <ul className="time">
-                    <li>
-                      <span>Monday - Friday :</span> 9:00 - 22:00
-                    </li>
-
-                    <li>
-                      <span>Saturday – Sunday:</span> 9.00am – 22.00pm
-                    </li>
-
-                    <li>
-                      <span>Holiday:</span> Closed
-                    </li>
-                  </ul>
-
-                  <div className="widget-social justify-center style-2">
-                    <ul>
-                      <li>
-                        <a href="#" className="icon-fb"></a>
-                      </li>
-
-                      <li>
-                        <a href="#" className="icon-twitter"></a>
-                      </li>
-
-                      <li>
-                        <a href="#" className="icon-instagram"></a>
-                      </li>
-
-                      <li>
-                        <a href="#" className="icon-pinterest"></a>
-                      </li>
-
-                      <li>
-                        <a href="#" className="icon-skype"></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* /header-left */}
           <nav className="main-nav left">
             <ul className="menu-primary-menu">
               {menus.slice(0, 2).map((item) => (
                 <li
                   key={item.label}
                   className={`menu-item${item.hasChildren ? " menu-item-has-children" : ""}${
-                    item.current ? " current-menu-item" : ""
+                    pathname === `/menus/${item.slug.split("#")[0]}` ? " current-menu-item" : ""
                   }`}
                 >
                   <Link href={`/menus/${item.slug}`} className="nav-link px-3 py-2 rounded hover:bg-gray-100">{item.label}</Link>
@@ -225,7 +101,7 @@ export default function Header() {
                 <li
                   key={item.label}
                   className={`menu-item${item.hasChildren ? " menu-item-has-children" : ""}${
-                    item.current ? " current-menu-item" : ""
+                    pathname === `/menus/${item.slug.split("#")[0]}` ? " current-menu-item" : ""
                   }`}
                 >
                   <Link href={`/menus/${item.slug}`} className="nav-link px-3 py-2 rounded hover:bg-gray-100">
@@ -235,11 +111,9 @@ export default function Header() {
               ))}
             </ul>
           </nav>
-          {/* /main-nav */}
-          <div className="header-right">
-              <Search/>
-              <Cart/>
-          </div>
+
+          {headerRight && <HeaderRight/>}
+
         </div>
       </div>
       <div className={`mobile-nav-wrap${mobileNavActive ? " active" : ""}`}>
@@ -284,5 +158,139 @@ export default function Header() {
         </div>
       </div>
     </header>
+  );
+}
+
+export function HeaderLeft()
+{
+  
+    const [welcomActive, setWelcomActive] = useState(false);
+    const canvasRef = useRef(null);
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (
+          canvasRef.current &&
+          !canvasRef.current.contains(event.target)
+        ) {
+          setWelcomActive(false);
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener(
+          "mousedown",
+          handleClickOutside
+        );
+      };
+    }, []);
+
+  return(
+    <div className="header-left">
+      <div className="canvas" ref={canvasRef}>
+        <div className="canvas-button" onClick={() => setWelcomActive(!welcomActive)}>
+          <span></span>
+        </div>
+        <div className={`wg-welcom ${welcomActive ? " active" : ""}`}>
+          <div className="inner">
+            <div className="button-close" onClick={() => setWelcomActive(false)}>
+              <i className="icon-close"></i>
+            </div>
+
+            <div className="title">
+              Welcome To <br />
+              Centrum
+            </div>
+
+            <div className="text">
+              Where great food, warm hospitality, and unforgettable moments come together under one roof.
+            </div>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              width="15"
+              height="14"
+              viewBox="0 0 15 14"
+            >
+              <image
+                data-name=" copy"
+                width="15"
+                height="14"
+                xlinkHref="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAA6klEQVQokYWTvRGDMAyFHxwLkBGgoKJiBRghjGBGSEZIRkhGSEZIRgiVKxf2CqyQEyfdGZ8NanxI/qynHzIcWNvUFYASwKKNdf7tKNw2NV1WAC4Mir21saN8FBGwB/AAUEXe3fg2mRn87BQysBqnjZ0yD+wA/HbAK583Pk++7NcBSM3y71Q5Z1WJGh1LXSKPO8msIuCdussy+yA2a2OXgsfSeQHKMrIv1YMneFRlECDwnFAjWVc4562RzaHGkMQUKKpWk5onhuadORM4+CsaLgmBYXPIvpQg3O1wPakW+RHW+sinjaWubw3AH1VWQ+OlMsz1AAAAAElFTkSuQmCC"
+              />
+            </svg>
+
+            <div className="number-phone">
+              <a href="tel:+8801847091102">
+                +880 1847 091102
+              </a>
+            </div>
+
+            <div className="place">
+              Plot 1063, Block I, Bashundhara R/A,, Dhaka, Bangladesh
+            </div>
+
+            <div className="mail">
+              <a href="mailto:info@centrumbd.com">
+                info@centrumbd.com
+              </a>
+            </div>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              width="15"
+              height="14"
+              viewBox="0 0 15 14"
+            >
+              <image
+                data-name=" copy"
+                width="15"
+                height="14"
+                xlinkHref="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAA6klEQVQokYWTvRGDMAyFHxwLkBGgoKJiBRghjGBGSEZIRkhGSEZIRgiVKxf2CqyQEyfdGZ8NanxI/qynHzIcWNvUFYASwKKNdf7tKNw2NV1WAC4Mir21saN8FBGwB/AAUEXe3fg2mRn87BQysBqnjZ0yD+wA/HbAK583Pk++7NcBSM3y71Q5Z1WJGh1LXSKPO8msIuCdussy+yA2a2OXgsfSeQHKMrIv1YMneFRlECDwnFAjWVc4562RzaHGkMQUKKpWk5onhuadORM4+CsaLgmBYXPIvpQg3O1wPakW+RHW+sinjaWubw3AH1VWQ+OlMsz1AAAAAElFTkSuQmCC"
+              />
+            </svg>
+
+            <ul className="time">
+              <li>
+                <span>Every Day:</span> 8:00 AM – 2:00 AM (Next Day)
+              </li>
+            </ul>
+
+            <div className="widget-social justify-center style-2">
+              <ul>
+                <li>
+                  <a href="#" className="icon-fb"></a>
+                </li>
+
+                <li>
+                  <a href="#" className="icon-twitter"></a>
+                </li>
+
+                <li>
+                  <a href="#" className="icon-instagram"></a>
+                </li>
+
+                <li>
+                  <a href="#" className="icon-pinterest"></a>
+                </li>
+
+                <li>
+                  <a href="#" className="icon-skype"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+export function HeaderRight() {
+  return (
+    <div className="header-right">
+        <Search/>
+        <Cart/>
+    </div>
   );
 }

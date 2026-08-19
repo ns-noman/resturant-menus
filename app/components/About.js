@@ -2,13 +2,7 @@ import Link from "next/link";
 
 export default function About() {
   const openingHours = [
-    { day: "MONDAY", time: "7:00 - 21:00" },
-    { day: "TUESDAY", time: "7:00 - 21:00" },
-    { day: "WEDNESDAY", time: "7:00 - 21:00" },
-    { day: "THURSDAY", time: "7:00 - 21:00" },
-    { day: "FRIDAY", time: "8:00 - 21:00" },
-    { day: "SATURDAY", time: "7:00 - 21:00" },
-    { day: "SUNDAY", time: "CLOSED", active: true },
+    { day: "Everyday", time: "8:00 AM - 2:00 AM (Next Day)" },
   ];
 
   return (

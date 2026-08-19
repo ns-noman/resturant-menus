@@ -64,12 +64,12 @@ export default function MenuList({ items, companySlug }) {
         <div className="row">
           {items.map((item) => (
             <div
-              key={item.item_type}
+              key={item.category_name}
               className="col-lg-6"
             >
               <div className="heading-section text-center mb-77 wow fadeInUp">
                 <span className="sub sub-before sub-after style-big">
-                  {item.item_type}
+                  {item.category_name}
                 </span>
               </div>
 

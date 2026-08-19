@@ -11,10 +11,11 @@ import "@/app/css/animate.min.css";
 import "@/app/css/swiper-bundle.min.css";
 import "@/app/css/font/font.css";
 import "@/app/css/bootstrap.css";
-import Header from "@/app/components/HeaderMain";
+import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import CustomCursor from "@/app/components/CustomCursor";
 import ProgressBar from "@/app/components/ProgressBar";
+import { Toaster } from "sonner";
 
 
 const geistSans = Geist({
@@ -48,6 +49,16 @@ export default function RootLayout({ children }) {
           </div>
           <CustomCursor />
           <ProgressBar />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: "#198754",
+                color: "#fff",
+                border: "1px solid #198754",
+              },
+            }}
+          />
       </body>
     </html>
   );
